@@ -7,6 +7,8 @@ class AddaPlayer(BasePage):
     age_field_xpath = "//input[@name='age']"
     submit_button_xpath = "//*[text()='Submit']"
     main_position_field_xpath = "//input[@name='mainPosition']"
+    add_player_url = "https://scouts-test.futbolkolektyw.pl/en/players/add"
+    expected_title = "Add player"
 
     def type_in_name(self, name):
         self.field_send_keys(self.name_field_xpath, name)
@@ -22,4 +24,7 @@ class AddaPlayer(BasePage):
 
     def click_submit_button(self):
         self.click_on_the_element(self.submit_button_xpath)
+
+    def title_of_page(self):
+        assert self.get_page_title(self.add_player_url) == self.expected_title
     pass
