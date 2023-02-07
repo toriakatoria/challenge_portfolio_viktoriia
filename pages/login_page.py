@@ -13,6 +13,8 @@ class LoginPage(BasePage):
     login_form_title_expected = "Scouts Panel"
     remind_password_xpath= "//a"
     remind_password_title_expected = 'Remind password'
+    login_error_expected = "Identifier or password invalid."
+    login_error_xpath = "//*/form/div/div[1]/div[3]/span"
 
     def type_in_email(self, email):
         self.field_send_keys(self.login_field_xpath, email)
@@ -35,6 +37,12 @@ class LoginPage(BasePage):
         element = self.driver.find_element(by=By.XPATH, value=self.remind_password_xpath)
         element_text = element.text
         assert self.remind_password_title_expected == element_text
+
+    def log_in_error(self):
+        element = self.driver.find_element(by=By.XPATH, value=self.login_error_xpath)
+        element_text = element.text
+        assert self.login_error_expected == element_text
+
 
 
 

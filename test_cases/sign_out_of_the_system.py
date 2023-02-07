@@ -10,7 +10,7 @@ from pages.dashboard import Dashboard
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 
 
-class TestLoginPage(unittest.TestCase):
+class TestSignOut(unittest.TestCase):
 
     @classmethod
     def setUp(self):
@@ -30,16 +30,7 @@ class TestLoginPage(unittest.TestCase):
         user_login.click_sign_in_button()
         dashboard = Dashboard(self.driver)
         dashboard.title_of_page()
-
-    def test_log_in_to_the_system_wrong_credentials(self):
-        user_login = LoginPage(self.driver)
-        user_login.title_of_page()
-        user_login.login_form_title()
-        user_login.remind_password()
-        user_login.type_in_email('user02@getnada.com')
-        user_login.fill_in_password('Test')
-        user_login.click_sign_in_button()
-        user_login.log_in_error()
+        dashboard.click_sign_out_button()
 
     @classmethod
     def tearDown(self):
